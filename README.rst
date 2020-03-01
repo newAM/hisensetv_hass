@@ -6,6 +6,17 @@ Installation
 Place the ``custom_components`` folder into your configuration directory
 (or add its contents to an existing ``custom_components`` folder).
 
+Authentication
+**************
+You will need to perform one-time authentication for the API to work.
+
+.. code:: bash
+
+    pip install hisensetv
+    hisensetv 10.0.0.28 --authorize
+
+See `newAM/hisensetv <https://github.com/newAM/hisensetv>`_ for more details.
+
 Configuration
 *************
 
