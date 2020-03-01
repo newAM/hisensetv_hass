@@ -1,0 +1,8 @@
+{
+    "domain": "hisensetv",
+    "name": "Hisense Television",
+    "documentation": "https://developers.home-assistant.io/docs/creating_integration_manifest/",
+    "dependencies": [],
+    "codeowners": ["@newAM"],
+    "requirements": ["hisensetv==0.0.4", "wakeonlan==1.1.6"]
+}
