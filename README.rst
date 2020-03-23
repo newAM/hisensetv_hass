@@ -3,8 +3,8 @@ README
 
 |hacs_badge|
 
-Manual Installation
-*******************
+Installation
+************
 Place the ``custom_components`` folder into your configuration directory
 (or add its contents to an existing ``custom_components`` folder).
 
