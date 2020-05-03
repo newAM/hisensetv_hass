@@ -17,6 +17,7 @@ import socket
 import subprocess as sp
 import voluptuous as vol
 import wakeonlan
+import time
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -51,10 +52,7 @@ def setup_platform(
     add_entities(
         [
             HisenseTvEntity(
-                host=host,
-                mac=mac,
-                name=name,
-                broadcast_address=broadcast_address,
+                host=host, mac=mac, name=name, broadcast_address=broadcast_address,
             )
         ],
         True,
@@ -69,19 +67,23 @@ class HisenseTvEntity(SwitchDevice):
         self._broadcast_address = broadcast_address
         self._is_on = True
         self._state = False
+        self._last_state_change = 0
 
     def turn_on(self, **kwargs):
         if self._broadcast_address:
-            wakeonlan.send_magic_packet(
-                self._mac, ip_address=self._broadcast_address
-            )
+            wakeonlan.send_magic_packet(self._mac, ip_address=self._broadcast_address)
         else:
             wakeonlan.send_magic_packet(self._mac)
+
+        self._state = True
+        self._last_state_change = time.monotonic()
 
     def turn_off(self, **kwargs):
         try:
             with HisenseTv(self._host) as tv:
                 tv.send_key_power()
+            self._state = False
+            self._last_state_change = time.monotonic()
         except socket.error as e:
             if "host is unreachable" in str(e).lower():
                 _LOGGER.debug("unable to reach TV, likely powered off already")
@@ -100,6 +102,10 @@ class HisenseTvEntity(SwitchDevice):
 
     def update(self):
         """Check if device is on and update the state."""
+        # skip updating via ping if power state has changed in last 15s
+        if time.monotonic() - self._last_state_change < 15:
+            return
+
         if platform.system().lower() == "windows":
             ping_cmd = [
                 "ping",
