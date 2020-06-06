@@ -52,7 +52,10 @@ def setup_platform(
     add_entities(
         [
             HisenseTvEntity(
-                host=host, mac=mac, name=name, broadcast_address=broadcast_address,
+                host=host,
+                mac=mac,
+                name=name,
+                broadcast_address=broadcast_address,
             )
         ],
         True,
@@ -71,7 +74,9 @@ class HisenseTvEntity(SwitchDevice):
 
     def turn_on(self, **kwargs):
         if self._broadcast_address:
-            wakeonlan.send_magic_packet(self._mac, ip_address=self._broadcast_address)
+            wakeonlan.send_magic_packet(
+                self._mac, ip_address=self._broadcast_address
+            )
         else:
             wakeonlan.send_magic_packet(self._mac)
 
