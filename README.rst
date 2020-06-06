@@ -12,10 +12,12 @@ Alternatively install with `HACS <https://hacs.xyz/>`_.
 
 Authentication
 **************
-You will need to perform one-time authentication for the API to work.
+On most models you will need to perform one-time authentication for the API
+to work.
 
-This authentication can be performed on your local computer, or on your
-home-assistant server.
+This authentication can be performed on any device to authenticate the API
+on all devices.  In other words you can use your local PC to authenticate
+your home-assistant server.
 
 .. code:: bash
 
@@ -34,6 +36,7 @@ Configuration
         host: 10.0.0.28
         mac: ab:cd:ef:12:34:56
         name: tv
+        ssl: true
 
 Warning
 *******
