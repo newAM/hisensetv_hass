@@ -1,7 +1,7 @@
 README
 ######
 
-|hacs_badge|
+|hacs_badge| |Build Status|
 
 Installation
 ************
@@ -46,3 +46,5 @@ if I have horribly messed something up.
 
 .. |hacs_badge| image:: https://img.shields.io/badge/HACS-Custom-orange.svg
     :target: https://github.com/custom-components/hacs
+.. |Build Status| image:: https://api.travis-ci.com/newAM/hisensetv_hass.svg?branch=master
+   :target: https://travis-ci.com/newAM/hisensetv_hass
