@@ -35,6 +35,9 @@ Configuration
         mac: ab:cd:ef:12:34:56
         name: tv
 
+* ``host`` is the (static) IP address of your TV.
+* ``mac`` if the TVs MAC address for Wake on LAN (WOL).
+
 Warning
 *******
 This is provided **as-is**.
