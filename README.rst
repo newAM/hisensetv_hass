@@ -3,6 +3,8 @@ README
 
 |hacs_badge| |Build Status|
 
+**Update 2020-07-09** This repository is no longer maintained.  I do not use this component anymore.  I found that my TV would drop the Ethernet connection and require physically unplugging/replugging it to maintain connectivity.
+
 Installation
 ************
 Place the ``custom_components`` folder into your configuration directory
